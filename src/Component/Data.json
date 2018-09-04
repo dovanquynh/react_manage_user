@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Martin Garrix",
+        "tel": "0123456789",
+        "permission": 1
+    },
+    {
+        "id": 2,
+        "name": "Hard Well",
+        "tel": "0966512652",
+        "permission": 3
+    },
+    {
+        "id": 3,
+        "name": "Tiesto",
+        "tel": "456546",
+        "permission": 2
+    },
+    {
+        "id": 4,
+        "name": "Zedd",
+        "tel": "98454",
+        "permission": 3
+    },
+    {
+        "id": 5,
+        "name": "Alesso",
+        "tel": "515",
+        "permission": 2
+    },
+    {
+        "id": 6,
+        "name": "The Chainsmoker",
+        "tel": "54545",
+        "permission": 2
+    },
+    {
+        "id": 7,
+        "name": "Avicii",
+        "tel": "020085854",
+        "permission": 1
+    }
+]

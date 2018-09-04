@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class AddUser extends Component {
-    render() {
-        return (
-            <div className="col-3">
+    checkStatus = () => {
+        if (this.props.displayForm === true) {
+            return (
                 <div className="card border-primary mb-3 mt-2">
                     <div className="card-header">Thêm mới</div>
                     <div className="card-body text-primary">
@@ -22,6 +22,13 @@ class AddUser extends Component {
                         <button className="btn btn-primary">Thêm</button>
                     </div>
                 </div>
+            )
+        }
+    }
+    render() {
+        return (
+            <div>
+                {this.checkStatus()}
             </div>
 
         );

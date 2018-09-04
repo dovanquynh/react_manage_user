@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import TableRow from './TableRow';
 
 class Table extends Component {
+    mappingData = () => { 
+        return (
+            this.props.dataUserProps.map((value, key) => (
+            <TableRow userName={value.name}  key={key} stt={key} tel={value.tel} per={value.permission} /> 
+            ))
+        )
+    }
     render() {
         return (
-            <div className="col-9">
+            <div className="col">
                 <table className="table table-striped table-hover table-inverse ">
                     <thead>
                         <tr>
@@ -15,34 +23,7 @@ class Table extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Nguyễn Hồng Thuận</td>
-                            <td>0123456789</td>
-                            <td>Admin</td>
-                            <td>
-                                <div className="btn btn-warning">
-                                    <i className="fa fa-edit edit">Sửa</i>
-                                </div>
-                                <div className="btn btn-danger">
-                                    <i className="fas fa-trash edit">Xóa</i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Nguyễn Hải Phong</td>
-                            <td>0123456789</td>
-                            <td>Member</td>
-                            <td>
-                                <div className="btn btn-warning">
-                                    <i className="fa fa-edit edit">Sửa</i>
-                                </div>
-                                <div className="btn btn-danger">
-                                    <i className="fas fa-trash del">Xóa</i>
-                                </div>
-                            </td>
-                        </tr>
+                        {this.mappingData()}
                     </tbody>
                 </table>
             </div>
