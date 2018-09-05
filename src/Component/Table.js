@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import TableRow from './TableRow';
 
 class Table extends Component {
-    mappingData = () => { 
+    mappingData = () => {
         return (
             this.props.dataUserProps.map((value, key) => (
-            <TableRow userName={value.name}  key={key} stt={key} tel={value.tel} per={value.permission} /> 
+                <TableRow 
+                changeEditUserStatus = {() => this.props.changeEditUserStatus()}
+                editFunTableRow={(user) => this.props.editFuncApp(value)} 
+                userName={value.name} 
+                key={key} 
+                stt={key} 
+                tel={value.tel} 
+                per={value.permission} />
             ))
         )
     }
