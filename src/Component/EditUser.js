@@ -1,7 +1,40 @@
 import React, { Component } from 'react';
 
 class EditUser extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.dataUserEditObject.id,
+            name: this.props.dataUserEditObject.name,
+            tel: this.props.dataUserEditObject.tel,
+            permission: this.props.dataUserEditObject.permission
+        }
+    }
+    
+
+    isChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value
+        });
+    }
+
     //props.dataUserEditObject
+    saveButton = () => {
+        var info = {};
+        info.id = this.state.id;
+        info.name = this.state.name;
+        info.tel = this.state.tel;
+        info.permission = this.state.permission;
+       
+
+        this.props.getUserEditInfo(info); 
+        this.props.changeEditUserStatus();//an form
+
+    }
+
     render() {
         return (
             <div className="card border-primary mb-3 mt-2">
@@ -21,7 +54,7 @@ class EditUser extends Component {
                             <option value={2} >Member</option>
                         </select>
                     </div>
-                    <button type="reset" className="btn btn-primary" onClick={() => this.props.changeEditUserStatus() } >Lưu </button>
+                    <button type="button" className="btn btn-primary" onClick={() => this.saveButton() } >Lưu </button>
                 </form>
                 </div>
             </div>

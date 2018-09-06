@@ -14,10 +14,13 @@ class TableRow extends Component {
         this.props.editFunTableRow();
         this.props.changeEditUserStatus();
     }
+    delClick = (id) => {
+        this.props.delButtonClick(id);
+    }
     render() {
         return (
             <tr>
-                <td>{this.props.stt}</td>
+                <td>{this.props.stt+1}</td>
                 <td>{this.props.userName}</td>
                 <td>{this.props.tel}</td>
                 <td>
@@ -27,10 +30,10 @@ class TableRow extends Component {
                 </td>
                 <td>
                     <div className="btn btn-warning">
-                        <i className="fa fa-edit edit" onClick={this.editClick}>Sửa</i>
+                        <i className="fa fa-edit edit" onClick={() => this.editClick()}>Sửa</i>
                     </div>
                     <div className="btn btn-danger">
-                        <i className="fas fa-trash edit">Xóa</i>
+                        <i className="fas fa-trash edit" onClick={(id) => this.delClick(this.props.id)}>Xóa</i>
                     </div>
                 </td>
             </tr>

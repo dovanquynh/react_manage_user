@@ -29,7 +29,7 @@ class App extends Component {
   editUser = (user) => {
     console.log(user);
     this.setState({
-      userEditObject: user 
+      userEditObject: user
     });
   }
 
@@ -57,6 +57,30 @@ class App extends Component {
       searchText: data
     });
   }
+  getUserEditInfoApp = (info) => {
+    console.log('thong tin da sua xong la ' + info.name);
+    this.state.data.forEach((value, key)=> {
+      if(value.id === info.id){
+        value.name = info.name;
+        value.tel = info.tel;
+        value.permission = info.permission;
+      }
+    })
+  }
+
+  deleteUser = (id) => {
+    var tempData = this.state.data;
+    tempData = tempData.filter(item => item.id !== id);
+    this.setState({
+      data: tempData
+    });
+    console.log(tempData);
+    // tempData.forEach((value, key) => {
+    //   if(value.id === id){
+    //     console.log(key); 
+    //   }
+    // })
+  }
 
   render() {
     var result = [];
@@ -71,7 +95,8 @@ class App extends Component {
         <div className="search-form">
           <div className="container">
             <div className="row">
-              <SearchForm
+              <SearchForm 
+                getUserEditInfoApp={(info) => this.getUserEditInfoApp(info)}
                 dataEditUser={this.state.userEditObject}
                 getTextSearchProps={(data) => this.getTextSearch(data)}
                 ketNoi={() => this.changeStatus()}
@@ -80,6 +105,7 @@ class App extends Component {
                 changeEditUserStatus={() => this.changeEditUserStatus()}
               />
               <Table
+              deleteUser={(id) => this.deleteUser(id) }
                 dataUserProps={result}
                 editFuncApp={(user) => this.editUser(user)}
                 changeEditUserStatus={() => this.changeEditUserStatus()}
