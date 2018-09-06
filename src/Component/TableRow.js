@@ -20,7 +20,7 @@ class TableRow extends Component {
     render() {
         return (
             <tr>
-                <td>{this.props.stt+1}</td>
+                <td>{this.props.stt + 1}</td>
                 <td>{this.props.userName}</td>
                 <td>{this.props.tel}</td>
                 <td>

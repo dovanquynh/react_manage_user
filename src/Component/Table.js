@@ -8,17 +8,17 @@ class Table extends Component {
     mappingData = () => {
         return (
             this.props.dataUserProps.map((value, key) => (
-                <TableRow 
-                delButtonClick = {(id) => this.delButtonClick(id)}
-                changeEditUserStatus = {() => this.props.changeEditUserStatus()}
-                editFunTableRow={(user) => this.props.editFuncApp(value)} 
-                userName={value.name} 
-                key={key} 
-                stt={key} 
-                tel={value.tel} 
-                per={value.permission}
-                id={value.id}
-                 />
+                <TableRow
+                    delButtonClick={(id) => this.delButtonClick(id)}
+                    changeEditUserStatus={() => this.props.changeEditUserStatus()}
+                    editFunTableRow={(user) => this.props.editFuncApp(value)}
+                    userName={value.name}
+                    key={key}
+                    stt={key}
+                    tel={value.tel}
+                    per={value.permission}
+                    id={value.id}
+                />
             ))
         )
     }

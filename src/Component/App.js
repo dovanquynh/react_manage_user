@@ -14,10 +14,24 @@ class App extends Component {
 
     this.state = {
       displayForm: true,
-      data: DataUser,
+      data: [],
       searchText: '',
       editUserStatus: false,
       userEditObject: {}
+    }
+  }
+
+
+  componentWillMount() {
+    //kiem tra xem co localStorage chua
+    if (localStorage.getItem('userData') === null) {
+      localStorage.setItem('userData', JSON.stringify(DataUser));
+    }
+    else {
+      var temp = JSON.parse(localStorage.getItem('userData'));
+      this.setState({
+        data: temp
+      });
     }
   }
 
@@ -31,6 +45,7 @@ class App extends Component {
     this.setState({
       userEditObject: user
     });
+
   }
 
   getDataNewUser = (name, tel, permission) => {
@@ -44,6 +59,8 @@ class App extends Component {
     this.setState({
       data: items
     });
+    //day du lieu vao localStorage
+    localStorage.setItem('userData', JSON.stringify(items));
   }
 
   changeStatus = () => {
@@ -59,13 +76,15 @@ class App extends Component {
   }
   getUserEditInfoApp = (info) => {
     console.log('thong tin da sua xong la ' + info.name);
-    this.state.data.forEach((value, key)=> {
-      if(value.id === info.id){
+    this.state.data.forEach((value, key) => {
+      if (value.id === info.id) {
         value.name = info.name;
         value.tel = info.tel;
         value.permission = info.permission;
       }
     })
+    //day du lieu vao localStorage
+    localStorage.setItem('userData', JSON.stringify(this.state.data));
   }
 
   deleteUser = (id) => {
@@ -80,9 +99,14 @@ class App extends Component {
     //     console.log(key); 
     //   }
     // })
+
+
+    //day du lieu vao localStorage
+    localStorage.setItem('userData', JSON.stringify(tempData));
   }
 
   render() {
+    //localStorage.setItem('userData',JSON.stringify(DataUser));
     var result = [];
     this.state.data.forEach((item) => {
       if (item.name.indexOf(this.state.searchText) !== -1) {
@@ -95,7 +119,7 @@ class App extends Component {
         <div className="search-form">
           <div className="container">
             <div className="row">
-              <SearchForm 
+              <SearchForm
                 getUserEditInfoApp={(info) => this.getUserEditInfoApp(info)}
                 dataEditUser={this.state.userEditObject}
                 getTextSearchProps={(data) => this.getTextSearch(data)}
@@ -105,7 +129,7 @@ class App extends Component {
                 changeEditUserStatus={() => this.changeEditUserStatus()}
               />
               <Table
-              deleteUser={(id) => this.deleteUser(id) }
+                deleteUser={(id) => this.deleteUser(id)}
                 dataUserProps={result}
                 editFuncApp={(user) => this.editUser(user)}
                 changeEditUserStatus={() => this.changeEditUserStatus()}
